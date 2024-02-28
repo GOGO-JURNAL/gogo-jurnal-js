@@ -16,6 +16,7 @@
   "author": "Ardhi Harry",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "5.9.1",
     "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "joi": "^17.12.1",
