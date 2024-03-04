@@ -8,6 +8,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "ignorePatterns": ["**/test/**/*.test.js"],
     "rules": {
         "import/extensions": "off",
         "import/no-extraneous-dependencies": "off"
