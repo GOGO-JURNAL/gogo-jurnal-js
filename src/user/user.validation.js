@@ -11,7 +11,17 @@ const login = Joi.object({
   password: Joi.string().max(100).required(),
 });
 
+const get = Joi.string().max(100).required();
+
+const update = Joi.object({
+  username: Joi.string().max(100).required(),
+  password: Joi.string().max(100).optional(),
+  name: Joi.string().max(100).optional(),
+});
+
 export default {
   register,
   login,
+  get,
+  update,
 };
