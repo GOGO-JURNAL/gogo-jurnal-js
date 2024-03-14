@@ -19,9 +19,10 @@ const getPenelitians = async (sintaiId) => {
       const title = penelitian.querySelector('.ar-title').innerText;
       const publication = penelitian.querySelector('.ar-pub').innerText;
       const year = penelitian.querySelector('.ar-year').innerText;
+      const category = 'RISET';
 
       const penelitianTemp = {
-        title, publication, year,
+        title, publication, year, category,
       };
       penelitianList.push(penelitianTemp);
     });

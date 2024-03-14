@@ -19,9 +19,10 @@ const getPengabdians = async (sintaiId) => {
       const title = pengabdian.querySelector('.ar-title').innerText;
       const publication = pengabdian.querySelector('.ar-pub').innerText;
       const year = pengabdian.querySelector('.ar-year').innerText;
+      const category = 'PENGABDIAN';
 
       const pengabdianTemp = {
-        title, publication, year,
+        title, publication, year, category,
       };
       pengabdianList.push(pengabdianTemp);
     });

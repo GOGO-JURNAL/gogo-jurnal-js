@@ -20,9 +20,10 @@ const getScopuses = async (sintaiId) => {
       const publication = scope.querySelector('.ar-pub').innerText;
       const cited = scope.querySelector('.ar-cited').innerText;
       const year = scope.querySelector('.ar-year').innerText;
+      const category = 'SCOPUS';
 
       const scopeList = {
-        title, publication, cited, year,
+        title, publication, cited, year, category,
       };
       scopusList.push(scopeList);
     });
