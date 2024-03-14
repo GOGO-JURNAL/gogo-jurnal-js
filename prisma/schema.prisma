@@ -11,10 +11,9 @@ datasource db {
 }
 
 model University {
-  id     String   @id @default(uuid()) @db.VarChar(100)
-  name   String   @db.VarChar(100)
-  Dosen  Dosen[]
-  Jurnal Jurnal[]
+  id    String  @id @default(uuid()) @db.VarChar(100)
+  name  String  @db.VarChar(100)
+  Dosen Dosen[]
 
   @@map("university")
 }
@@ -30,7 +29,7 @@ model Prodi {
 model Dosen {
   id            String     @id @default(uuid()) @db.VarChar(100)
   name          String     @db.VarChar(100)
-  sinta_id      String     @db.VarChar(20)
+  sinta_id      String     @unique @db.VarChar(20)
   university_id String     @db.VarChar(100)
   university    University @relation(fields: [university_id], references: [id])
   prodi_id      String     @db.VarChar(100)
@@ -41,16 +40,14 @@ model Dosen {
 }
 
 model Jurnal {
-  id            String     @id @default(uuid()) @db.VarChar(100)
-  title         String     @db.VarChar(255)
-  year          String     @db.VarChar(255)
-  cite          String?    @db.VarChar(255)
-  category      Category?
-  publication   String     @db.VarChar(100)
-  dosen_id      String     @db.VarChar(100)
-  dosen         Dosen      @relation(fields: [dosen_id], references: [id])
-  university_id String     @db.VarChar(100)
-  university    University @relation(fields: [university_id], references: [id])
+  id          String    @id @default(uuid()) @db.VarChar(100)
+  title       String    @db.VarChar(255)
+  year        String    @db.VarChar(255)
+  cite        String?   @db.VarChar(255)
+  category    Category?
+  publication String    @db.VarChar(100)
+  dosen_id    String    @db.VarChar(100)
+  dosen       Dosen     @relation(fields: [dosen_id], references: [id])
 
   @@map("jurnal")
 }
