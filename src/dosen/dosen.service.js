@@ -97,6 +97,20 @@ const destroy = async (request) => {
     throw new ResponseError(400, 'Dosen is not found');
   }
 
+  const journalData = await prisma.jurnal.count({
+    where: {
+      dosen_id: data.id,
+    },
+  });
+
+  if (journalData > 1) {
+    await prisma.jurnal.deleteMany({
+      where: {
+        dosen_id: data.id,
+      },
+    });
+  }
+
   return prisma.dosen.delete({
     where: {
       id,
