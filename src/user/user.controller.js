@@ -4,6 +4,7 @@ const register = async (req, res, next) => {
   try {
     const data = await userService.register(req.body);
     res.status(201).json({
+      status: 'Success to register',
       data,
     });
   } catch (err) {
@@ -15,6 +16,7 @@ const login = async (req, res, next) => {
   try {
     const data = await userService.login(req.body);
     res.status(200).json({
+      status: 'Success to login',
       data,
     });
   } catch (err) {
@@ -27,6 +29,7 @@ const get = async (req, res, next) => {
     const { username } = req.user;
     const data = await userService.get(username);
     res.status(200).json({
+      status: 'Success get user detail',
       data,
     });
   } catch (err) {
@@ -42,6 +45,7 @@ const update = async (req, res, next) => {
 
     const data = await userService.update(request);
     res.status(200).json({
+      status: 'Success update user',
       data,
     });
   } catch (err) {
@@ -53,6 +57,7 @@ const logout = async (req, res, next) => {
   try {
     await userService.logout(req.user.username);
     res.status(200).json({
+      status: 'Success to logout',
       data: 'OK',
     });
   } catch (err) {
