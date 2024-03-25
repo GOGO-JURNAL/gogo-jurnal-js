@@ -99,29 +99,39 @@ const getAll = async (requestQuery) => {
     }
   }
 
-  const result = prisma.jurnal.findMany({
+  const result = await prisma.jurnal.findMany({
     where,
-    select: {
-      id: true,
-      title: true,
-      year: true,
-      cite: true,
-      category: true,
-      publication: true,
-      dosen: {
-        select: {
-          id: true,
-          name: true,
-        },
-      },
-    },
   });
 
   if (!result) {
-    throw new ResponseError(400, 'Journal Resesarch is not found');
+    throw new ResponseError(400, 'Journal is not found');
   }
 
-  return result;
+  // Menghitung jumlah jurnal untuk setiap kategori
+  const categoryCounts = {};
+  result.forEach((journal) => {
+    const { category } = journal;
+    if (categoryCounts[category]) {
+      categoryCounts[category]++;
+    } else {
+      categoryCounts[category] = 1;
+    }
+  });
+
+  const responseData = {
+    ...categoryCounts,
+    Jurnal: result.map((journal) => ({
+      id: journal.id,
+      title: journal.title,
+      year: journal.year,
+      cite: journal.cite,
+      category: journal.category,
+      publication: journal.publication,
+      dosen_id: journal.dosen_id,
+    })),
+  };
+
+  return responseData;
 };
 
 export default {
