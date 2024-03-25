@@ -2,7 +2,7 @@ import dosenService from './dosen.service.js';
 
 const create = async (req, res, next) => {
   try {
-    const data = await dosenService.create(req.body);
+    const data = await dosenService.create(req.body, req.user);
     res.status(200).json({
       status: 'Success create dosen',
       data,
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await dosenService.getAll();
+    const data = await dosenService.getAll(req.user);
     res.status(200).json({
       status: 'Success get all dosen',
       data,
@@ -26,7 +26,7 @@ const getAll = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const data = await dosenService.get(req.params);
+    const data = await dosenService.get(req.params, req.user);
     res.status(200).json({
       status: 'Success get dosen detail',
       data,
@@ -38,7 +38,7 @@ const get = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const data = await dosenService.update(req.body, req.params);
+    const data = await dosenService.update(req.body, req.params, req.user);
     res.status(200).json({
       status: 'Success update dosen',
       data,
@@ -50,7 +50,7 @@ const update = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    const data = await dosenService.destroy(req.params);
+    const data = await dosenService.destroy(req.params, req.user);
     res.status(200).json({
       status: 'Success delete dosen',
       data,

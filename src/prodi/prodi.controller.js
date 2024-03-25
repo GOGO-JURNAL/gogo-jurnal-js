@@ -2,7 +2,7 @@ import prodiService from './prodi.service.js';
 
 const create = async (req, res, next) => {
   try {
-    const data = await prodiService.create(req.body.name);
+    const data = await prodiService.create(req.body, req.user);
     res.status(200).json({
       status: 'Success create prodi',
       data,
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await prodiService.getAll();
+    const data = await prodiService.getAll(req.user);
     res.status(200).json({
       status: 'Success get all prodi',
       data,
@@ -26,7 +26,7 @@ const getAll = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const data = await prodiService.get(req.params);
+    const data = await prodiService.get(req.params, req.user);
     res.status(200).json({
       status: 'Success get prodi detail',
       data,
@@ -38,7 +38,7 @@ const get = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const data = await prodiService.update(req.body, req.params);
+    const data = await prodiService.update(req.body, req.params, req.user);
     res.status(200).json({
       status: 'Success update prodi',
       data,
@@ -50,7 +50,7 @@ const update = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    const data = await prodiService.destroy(req.params);
+    const data = await prodiService.destroy(req.params, req.user);
     res.status(200).json({
       status: 'Success delete prodi',
       data,
