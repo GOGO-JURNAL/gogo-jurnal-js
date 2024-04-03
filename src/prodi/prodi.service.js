@@ -6,7 +6,6 @@ import ResponseError from '../helper/response.error.js';
 const create = async (request, requestUser) => {
   const name = validate(validateString, request.name);
   const { role } = requestUser;
-  console.log(requestUser);
 
   if (requestUser && role === 'ADMIN') {
     const data = await prisma.prodi.count({
@@ -31,7 +30,11 @@ const create = async (request, requestUser) => {
 
 const getAll = async (requestUser) => {
   if (requestUser) {
-    return prisma.prodi.findMany();
+    return prisma.prodi.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
   }
 
   throw new ResponseError(403, 'Forbidden!');

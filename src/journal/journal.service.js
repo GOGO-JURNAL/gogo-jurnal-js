@@ -101,6 +101,11 @@ const getAll = async (requestQuery) => {
 
   const result = await prisma.jurnal.findMany({
     where,
+    orderBy: {
+      dosen: {
+        name: 'asc',
+      },
+    },
   });
 
   if (!result) {

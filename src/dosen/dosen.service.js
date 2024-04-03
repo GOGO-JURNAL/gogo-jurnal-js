@@ -38,6 +38,9 @@ const getAll = async (requestUser) => {
       include: {
         Jurnal: true,
       },
+      orderBy: {
+        name: 'asc',
+      },
     });
   }
 

@@ -30,7 +30,11 @@ const create = async (request, requestUser) => {
 
 const getAll = async (requestUser) => {
   if (requestUser) {
-    return prisma.university.findMany();
+    return prisma.university.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
   }
 
   throw new ResponseError(403, 'Forbidden!');
