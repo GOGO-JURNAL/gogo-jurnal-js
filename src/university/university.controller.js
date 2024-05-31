@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await universityService.getAll(req.user);
+    const data = await universityService.getAll();
     res.status(200).json({
       status: 'Success get all university',
       data,
@@ -26,7 +26,7 @@ const getAll = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const data = await universityService.get(req.params, req.user);
+    const data = await universityService.get(req.params);
     res.status(200).json({
       status: 'Success get university detail',
       data,

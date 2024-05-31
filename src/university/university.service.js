@@ -28,36 +28,26 @@ const create = async (request, requestUser) => {
   throw new ResponseError(403, 'Forbidden!');
 };
 
-const getAll = async (requestUser) => {
-  if (requestUser) {
-    return prisma.university.findMany({
-      orderBy: {
-        name: 'asc',
-      },
-    });
-  }
+const getAll = async () => prisma.university.findMany({
+  orderBy: {
+    name: 'asc',
+  },
+});
 
-  throw new ResponseError(403, 'Forbidden!');
-};
-
-const get = async (request, requestUser) => {
+const get = async (request) => {
   const id = validate(validateString, request.id);
 
-  if (requestUser) {
-    const data = await prisma.university.findUnique({
-      where: {
-        id,
-      },
-    });
+  const data = await prisma.university.findUnique({
+    where: {
+      id,
+    },
+  });
 
-    if (!data) {
-      throw new ResponseError(400, 'University is not found');
-    }
-
-    return data;
+  if (!data) {
+    throw new ResponseError(400, 'University is not found');
   }
 
-  throw new ResponseError(403, 'Forbidden!');
+  return data;
 };
 
 const update = async (requestBody, requestParams, requestUser) => {

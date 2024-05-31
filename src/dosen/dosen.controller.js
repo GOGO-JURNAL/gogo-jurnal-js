@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try {
-    const data = await dosenService.getAll(req.user);
+    const data = await dosenService.getAll();
     res.status(200).json({
       status: 'Success get all dosen',
       data,
@@ -26,7 +26,7 @@ const getAll = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const data = await dosenService.get(req.params, req.user);
+    const data = await dosenService.get(req.params);
     res.status(200).json({
       status: 'Success get dosen detail',
       data,
